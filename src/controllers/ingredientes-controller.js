@@ -111,6 +111,7 @@ exports.delete = (req, res, next) => {
                 msg: "Item removido com sucesso"
             }
             res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE');
             res.status(200).send(msg);
         }).catch(function(){
 
@@ -121,6 +122,7 @@ exports.delete = (req, res, next) => {
                 msg: "Houve problemas ao deletar item"
             }
             res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE');
             res.status(400).send(msg);
 
             console.log(msg.msg);
