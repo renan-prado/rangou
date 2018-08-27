@@ -16,7 +16,7 @@ exports.get = (req, res, next) => {
 
                 if(receita.val().ativo){ ac_receitas.push(receita); };
             });
-
+            res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(200).send({ receitas: ac_receitas });
         });
 
@@ -28,6 +28,7 @@ exports.getAll = (req, res, next) => {
         .ref('/receitas')
         .once('value')
         .then(function(receitas) {
+            res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(200).send({ receitas: receitas });
         });
 
@@ -45,6 +46,7 @@ exports.getRec = (req, res, next) => {
         }).catch(function(){
 
             let msg = "Houve problemas ao resgatar o item";
+            res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(400).send(msg);
             console.log(msg);
         });
@@ -80,7 +82,7 @@ exports.post = (req, res, next) => {
                 sucess: true,
                 msg: "Receita: " + req.body.nome_receita + " adicionado com sucesso!"
             }
-
+            res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(201).send(msg);
 
 
@@ -92,7 +94,7 @@ exports.post = (req, res, next) => {
                 sucess: false,
                 msg: "Houve problemas ao adicionar o item"
             }
-
+            res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(400).send(msg);
 
             console.log(msg.msg);
@@ -118,6 +120,7 @@ exports.delete = (req, res, next) => {
                 sucess: true,
                 msg: "Item removido com sucesso"
             }
+            res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(200).send(msg);
         }).catch(function(){
 
@@ -127,6 +130,7 @@ exports.delete = (req, res, next) => {
                 sucess: false,
                 msg: "Houve problemas ao deletar item"
             }
+            res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(400).send(msg);
 
             console.log(msg.msg);

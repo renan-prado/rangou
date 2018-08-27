@@ -15,6 +15,7 @@ exports.get = (req, res, next) => {
             ingredientes.forEach(function(ingrediente){
                 if(ingrediente.val().ativo){ ac_ingredientes.push(ingrediente); };
             });
+            res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(200).send({ ingredientes: ac_ingredientes });
         });
 
@@ -26,6 +27,7 @@ exports.getAll = (req, res, next) => {
         .ref('/ingredientes')
         .once('value')
         .then(function(ingredientes) {
+            res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(200).send({ ingredientes: ingredientes });
         });
 
@@ -43,6 +45,7 @@ exports.getIng = (req, res, next) => {
         }).catch(function(){
 
             let msg = "Houve problemas ao resgatar o item";
+            res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(400).send(msg);
             console.log(msg);
         });
@@ -71,7 +74,7 @@ exports.post = (req, res, next) => {
                 sucess: true,
                 msg: "Ingrediente: " + req.body.nome + " adicionado com sucesso!"
             }
-
+            res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(201).send(msg);
         }).catch(function(){
 
@@ -81,7 +84,7 @@ exports.post = (req, res, next) => {
                 sucess: false,
                 msg: "Houve problemas ao adicionar o item"
             }
-
+            res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(400).send(msg);
 
             console.log(msg.msg);
@@ -107,6 +110,7 @@ exports.delete = (req, res, next) => {
                 sucess: true,
                 msg: "Item removido com sucesso"
             }
+            res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(200).send(msg);
         }).catch(function(){
 
@@ -116,6 +120,7 @@ exports.delete = (req, res, next) => {
                 sucess: false,
                 msg: "Houve problemas ao deletar item"
             }
+            res.setHeader('Access-Control-Allow-Origin', '*');
             res.status(400).send(msg);
 
             console.log(msg.msg);
